@@ -40,7 +40,6 @@ type ChartTooltipProps = Partial<{
   label?: string
   labelFormatter?: (...args: any[]) => React.ReactNode
   labelClassName?: string
-  formatter?: (...args: any[]) => React.ReactNode
   color?: string
   nameKey?: string
   labelKey?: string
@@ -127,7 +126,6 @@ function ChartTooltipContent({
   label,
   labelFormatter,
   labelClassName,
-  formatter,
   color,
   nameKey,
   labelKey,
@@ -159,7 +157,7 @@ function ChartTooltipContent({
     <div className={cn("grid min-w-[8rem] gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs shadow-xl", className)}>
       {!nestLabel && tooltipLabel}
       <div className="grid gap-1.5">
-        {payload.map((item: PayloadItem, index) => {
+        {payload.map((item: PayloadItem) => {
           const key = `${nameKey || item.name || item.dataKey || "value"}`
           const itemConfig = getPayloadConfigFromPayload(config, item, key)
           const indicatorColor = color || item.payload.fill || item.color
